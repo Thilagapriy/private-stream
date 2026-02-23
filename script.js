@@ -1,44 +1,62 @@
-// 1. Safety Login Method
-function checkLogin() {
-    const user = document.getElementById('username').value;
-    const pass = document.getElementById('password').value;
+document.addEventListener("DOMContentLoaded", function () {
 
-    // Set your Username and Password here
-    if (user === "Dharu" && pass === "poda lusu") {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-    } else {
-        document.getElementById('error-msg').style.display = 'block';
-    }
-}
+    const loginScreen = document.getElementById("login-screen");
+    const mainContent = document.getElementById("main-content");
+    const errorMsg = document.getElementById("error-msg");
 
-const video = document.getElementById('videoPlayer');
-const playBtn = document.getElementById('playPauseBtn');
-const container = document.getElementById('video-container');
+    const video = document.getElementById("videoPlayer");
+    const playBtn = document.getElementById("playPauseBtn");
+    const container = document.getElementById("video-container");
 
-function togglePlay() {
-    if (video.paused) {
-        video.play();
-        playBtn.innerText = "Pause";
-    } else {
-        video.pause();
-        playBtn.innerText = "Play";
-    }
-}
+    // 🔐 LOGIN FUNCTION
+    window.checkLogin = function () {
+        const user = document.getElementById("username").value.trim();
+        const pass = document.getElementById("password").value.trim();
 
-function changeTime(seconds) {
-    video.currentTime += seconds;
-}
-
-function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        if (container.requestFullscreen) {
-            container.requestFullscreen();
-        } else if (container.webkitRequestFullscreen) { // Safari
-            container.webkitRequestFullscreen();
+        if (user === "Dharu" && pass === "poda lusu") {
+            loginScreen.style.display = "none";
+            mainContent.style.display = "block";
+            errorMsg.style.display = "none";
+        } else {
+            errorMsg.style.display = "block";
         }
-    } else {
-        document.exitFullscreen();
-    }
+    };
 
-}
+    // ▶ PLAY / PAUSE
+    window.togglePlay = function () {
+        if (video.paused) {
+            video.play();
+            playBtn.innerText = "Pause";
+        } else {
+            video.pause();
+            playBtn.innerText = "Play";
+        }
+    };
+
+    // ⏩ FORWARD / BACKWARD
+    window.changeTime = function (seconds) {
+        video.currentTime += seconds;
+    };
+
+    // ⛶ FULLSCREEN
+    window.toggleFullScreen = function () {
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    };
+
+    // 🔄 Sync button text if user clicks video directly
+    video.addEventListener("play", () => playBtn.innerText = "Pause");
+    video.addEventListener("pause", () => playBtn.innerText = "Play");
+
+});
