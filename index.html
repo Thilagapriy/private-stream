@@ -2,42 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Cinema</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+        }
+
+        #login-screen {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .login-box {
+            background: #111;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        #video-container {
+            position: relative;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .video-overlay {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .controls-center button {
+            margin: 0 5px;
+        }
+
+        .fs-btn {
+            background: black;
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
 
-    <div id="login-screen">
-        <div class="login-box">
-            <h3>hey Dharu this is for u💙</h3>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button onclick="checkLogin()">Enter</button>
-            <p id="error-msg" style="color:red; display:none;">Incorrect Login</p>
-        </div>
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+    <div class="login-box">
+        <h3>Hey Dharu 💙</h3>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="checkLogin()">Enter</button>
+        <p id="error-msg" style="color:red; display:none;">Incorrect Login</p>
     </div>
+</div>
 
-    <div id="main-content" style="display:none;">
-        <div id="video-container" class="video-wrapper">
-            <video id="videoPlayer" playsinline preload="metadata">
-                <source src="https://www.dropbox.com/scl/fi/o24ao3eq7igvpx7h9yfsl/www.1TamilMV.rsvp-With-Love-2026-Tamil-HQ-PreDVD-x264-HQ-Clean-AAC-700MB.mkv?rlkey=80g2quoqi6be01z1mvkr2nc56&st=5wpurnn2&dl=0" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+<!-- MAIN CONTENT -->
+<div id="main-content" style="display:none;">
+    <div id="video-container">
+        
+        <video id="videoPlayer" preload="metadata" playsinline>
+            <source src="https://www.dropbox.com/scl/fi/o24ao3eq7igvpx7h9yfsl/www.1TamilMV.rsvp-With-Love-2026-Tamil-HQ-PreDVD-x264-HQ-Clean-AAC-700MB.mkv?rlkey=80g2quoqi6be01z1mvkr2nc56&st=2pcwofaq&dl=0?raw=1" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
-            <div class="video-overlay">
-                <div class="controls-center">
-                    <button class="icon-btn" onclick="changeTime(-10)">-10s</button>
-                    <button id="playPauseBtn" class="icon-btn play-main" onclick="togglePlay()">Play</button>
-                    <button class="icon-btn" onclick="changeTime(10)">+10s</button>
-                </div>
-                <button class="fs-btn" onclick="toggleFullScreen()">⛶ Full Screen</button>
+        <div class="video-overlay">
+            <div class="controls-center">
+                <button onclick="changeTime(-10)">-10s</button>
+                <button id="playPauseBtn" onclick="togglePlay()">Play</button>
+                <button onclick="changeTime(10)">+10s</button>
             </div>
+            <button class="fs-btn" onclick="toggleFullScreen()">⛶ Fullscreen</button>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
-
-
