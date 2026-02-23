@@ -4,7 +4,7 @@ function checkLogin() {
     const pass = document.getElementById('password').value;
 
     // Set your Username and Password here
-    if (user === "Dharani" && pass === "dream is upsc") {
+    if (user === "Dharu" && pass === "poda lusu") {
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('main-content').style.display = 'block';
     } else {
@@ -40,4 +40,5 @@ function toggleFullScreen() {
     } else {
         document.exitFullscreen();
     }
+
 }
